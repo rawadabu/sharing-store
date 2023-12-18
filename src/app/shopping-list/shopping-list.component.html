@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-10">
+    <app-shopping-edit></app-shopping-edit>
+    <hr />
+    <ul class="list-group">
+      <a
+        class="list-group-item"
+        style="cursor: pointer"
+        *ngFor="let ingredient of ingredients; let i = index"
+        (click)="onEditItem(i)"
+      >
+        <div>
+          <strong>{{ ingredient.name }}</strong> ({{ ingredient.amount }})
+        </div>
+        <div>
+          <span class="badge badge-primary badge-pill"
+            >{{ ingredient.price }}＄</span
+          >
+        </div>
+      </a>
+    </ul>
+    <!-- Checkout Section -->
+    <div class="checkout-section mt-4">
+      <h4>Total: {{ onCalculateTotal() }}＄</h4>
+      <button class="btn btn-success">Checkout</button>
+    </div>
+  </div>
+</div>
