@@ -22,7 +22,9 @@
     <!-- Checkout Section -->
     <div class="checkout-section mt-4">
       <h4>Total: {{ onCalculateTotal() }}＄</h4>
-      <button class="btn btn-success">Checkout</button>
+      <button class="btn btn-success" [disabled]="!isAuthenticated">
+        Checkout
+      </button>
     </div>
   </div>
 </div>
