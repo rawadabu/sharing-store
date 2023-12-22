@@ -42,8 +42,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   onCalculateTotal(): number {
-    return this.ingredients.reduce((total, ingredient) => {
-      return total + ingredient.price * ingredient.amount;
-    }, 0);
+    return this.slService.calculateTotal();
   }
 }
