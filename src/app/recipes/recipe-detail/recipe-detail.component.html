@@ -4,14 +4,14 @@
       <img
         [src]="recipe.imagePath"
         alt="{{ recipe.name }}"
-        class="img-responsive"
+        class="img-responsive rounded"
         style="max-height: 300px"
       />
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <h1>{{ recipe.name }}</h1>
+      <h1 class="recipe-title">{{ recipe.name }}</h1>
     </div>
   </div>
   <div class="row">
@@ -40,14 +40,14 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      {{ recipe.description }}
+      <p class="recipe-description">{{ recipe.description }}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12 mx-auto">
       <ul class="list-group">
         <li
-          class="list-group-item"
+          class="list-group-item recipe-ingredient"
           *ngFor="let ingredient of recipe.ingredients"
         >
           {{ ingredient.name }} - {{ ingredient.amount }}

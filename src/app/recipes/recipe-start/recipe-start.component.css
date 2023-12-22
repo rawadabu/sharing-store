@@ -1,0 +1,15 @@
+.recipe-info-card {
+  background-color: #e7f3fe; /* Light blue background */
+  border: 1px solid #b8d8f7; /* Lighter border color */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding for content */
+  text-align: center; /* Center text */
+}
+
+.recipe-info-heading {
+  color: #31708f; /* Dark blue heading color */
+}
+
+.recipe-info-text {
+  color: #5bc0de; /* Light blue text color */
+}
