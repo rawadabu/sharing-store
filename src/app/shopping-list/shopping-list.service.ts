@@ -39,4 +39,10 @@ export class ShoppingListService {
     this.ingredients.splice(index, 1);
     this.ingredientsChanged.next(this.ingredients.slice());
   }
+
+  calculateTotal(): number {
+    return this.ingredients.reduce((total, ingredient) => {
+      return total + ingredient.price * ingredient.amount;
+    }, 0);
+  }
 }

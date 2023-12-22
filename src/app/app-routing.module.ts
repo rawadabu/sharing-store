@@ -8,6 +8,7 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
+import { CheckoutComponent } from './shopping-list/checkout/checkout.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   },
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
