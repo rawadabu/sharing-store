@@ -1,18 +1,15 @@
-<div class="container checkout-container">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-xs-12">
-      <h2>
-        Hello {{ userName | uppercase }} <i class="fas fa-hand-paper"></i>
-      </h2>
+    <div class="col-12">
+      <h2>Hello {{ userName | uppercase }}</h2>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-10">
+    <div class="col-10">
       <hr />
       <ul class="list-group">
         <a
           class="list-group-item"
-          style="cursor: pointer"
           *ngFor="let ingredient of ingredients; let i = index"
         >
           <div>
@@ -22,27 +19,45 @@
       </ul>
 
       <!-- Payment Options -->
-      <div class="payment-options">
-        <div class="payment-option">
-          <input type="radio" id="visaRadio" name="paymentOption" checked />
-          <label for="visaRadio"><i class="fab fa-cc-visa"></i> Visa</label>
+      <div class="mt-4">
+        <div class="form-check">
+          <input
+            type="radio"
+            id="visaRadio"
+            name="paymentOption"
+            checked
+            class="form-check-input"
+          />
+          <label for="visaRadio" class="form-check-label"
+            ><i class="fab fa-cc-visa"></i> Visa</label
+          >
         </div>
-        <div class="payment-option">
-          <input type="radio" id="mastercardRadio" name="paymentOption" />
-          <label for="mastercardRadio"
+        <div class="form-check">
+          <input
+            type="radio"
+            id="mastercardRadio"
+            name="paymentOption"
+            class="form-check-input"
+          />
+          <label for="mastercardRadio" class="form-check-label"
             ><i class="fab fa-cc-mastercard"></i> MasterCard</label
           >
         </div>
-        <div class="payment-option">
-          <input type="radio" id="paypalRadio" name="paymentOption" />
-          <label for="paypalRadio"
+        <div class="form-check">
+          <input
+            type="radio"
+            id="paypalRadio"
+            name="paymentOption"
+            class="form-check-input"
+          />
+          <label for="paypalRadio" class="form-check-label"
             ><i class="fab fa-cc-paypal"></i> PayPal</label
           >
         </div>
       </div>
 
       <!-- Payment Form -->
-      <div class="payment-form">
+      <div class="mt-4">
         <h5>Payment Details</h5>
         <form>
           <div class="form-group">
@@ -74,9 +89,11 @@
           </div>
         </form>
       </div>
-      <div class="checkout-section mt-4">
+
+      <!-- Checkout Section -->
+      <div class="mt-4">
         <h4>Total: {{ onCalculateTotal() }} ＄</h4>
-        <button class="btn btn-primary">Pay now!</button>
+        <button class="btn btn-success">Pay now!</button>
       </div>
     </div>
   </div>

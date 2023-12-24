@@ -1,9 +1,11 @@
 import { Ingredient } from '../shared/ingredient.model';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
+  private itemAlreadyExisted = new BehaviorSubject<boolean>(false);
+
   private ingredients: Ingredient[] = [
     new Ingredient('Apples', 5, 4),
     new Ingredient('Tomatoes', 10, 2),
@@ -18,16 +20,42 @@ export class ShoppingListService {
   }
 
   addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
-    this.ingredientsChanged.next(this.ingredients.slice());
+    if (
+      !this.ingredients.some(
+        (existingIngredient) => existingIngredient.name === ingredient.name
+      )
+    ) {
+      this.ingredients.push(ingredient);
+      this.ingredientsChanged.next(this.ingredients.slice());
+    } else {
+      this.setItemAlreadyExisted(true);
+      console.log('Ingredient already exists in the list');
+    }
   }
 
   addIngredients(ingredients: Ingredient[]) {
-    // for (let ingredient of ingredients) {
-    //   this.addIngredient(ingredient);
-    // }
-    this.ingredients.push(...ingredients);
-    this.ingredientsChanged.next(this.ingredients.slice());
+    const uniqueIngredients = ingredients.filter(
+      (ingredient) =>
+        !this.ingredients.some(
+          (existingIngredient) => existingIngredient.name === ingredient.name
+        )
+    );
+    // console.log(uniqueIngredients);
+    if (uniqueIngredients.length > 0) {
+      this.ingredients.push(...uniqueIngredients);
+      this.ingredientsChanged.next(this.ingredients.slice());
+    } else {
+      this.setItemAlreadyExisted(true);
+      console.log('All ingredients already exist in the list');
+    }
+  }
+
+  getItemAlreadyExisted(): Observable<boolean> {
+    return this.itemAlreadyExisted.asObservable();
+  }
+
+  setItemAlreadyExisted(value: boolean): void {
+    this.itemAlreadyExisted.next(value);
   }
 
   updateIngredient(index: number, newIngredient: Ingredient) {

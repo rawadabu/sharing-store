@@ -9,13 +9,13 @@
         *ngFor="let ingredient of ingredients; let i = index"
         (click)="onEditItem(i)"
       >
-        <div>
+        <div style="display: flex; justify-content: space-between">
           <strong>{{ ingredient.name }}</strong> ({{ ingredient.amount }})
         </div>
         <div>
           <span class="badge badge-primary badge-pill"
-            >{{ ingredient.price }}＄</span
-          >
+            >{{ ingredient.price }} <i class="fa-solid fa-dollar-sign"></i
+          ></span>
         </div>
       </a>
     </ul>
