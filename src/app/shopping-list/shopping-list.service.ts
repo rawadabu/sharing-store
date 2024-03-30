@@ -20,34 +20,33 @@ export class ShoppingListService {
   }
 
   addIngredient(ingredient: Ingredient) {
-    if (
-      !this.ingredients.some(
-        (existingIngredient) => existingIngredient.name === ingredient.name
-      )
-    ) {
+    if (!this.isIngredientInList(ingredient)) {
       this.ingredients.push(ingredient);
       this.ingredientsChanged.next(this.ingredients.slice());
     } else {
-      this.setItemAlreadyExisted(true);
+      // this.setItemAlreadyExisted(true);
       console.log('Ingredient already exists in the list');
     }
   }
 
   addIngredients(ingredients: Ingredient[]) {
     const uniqueIngredients = ingredients.filter(
-      (ingredient) =>
-        !this.ingredients.some(
-          (existingIngredient) => existingIngredient.name === ingredient.name
-        )
+      (ingredient) => !this.isIngredientInList(ingredient)
     );
-    // console.log(uniqueIngredients);
+
     if (uniqueIngredients.length > 0) {
       this.ingredients.push(...uniqueIngredients);
       this.ingredientsChanged.next(this.ingredients.slice());
     } else {
-      this.setItemAlreadyExisted(true);
+      // this.setItemAlreadyExisted(true);
       console.log('All ingredients already exist in the list');
     }
+  }
+
+  isIngredientInList(ingredient: Ingredient): boolean {
+    return this.ingredients.some(
+      (existingIngredient) => existingIngredient.name === ingredient.name
+    );
   }
 
   getItemAlreadyExisted(): Observable<boolean> {
